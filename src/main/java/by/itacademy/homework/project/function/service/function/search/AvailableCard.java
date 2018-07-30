@@ -33,7 +33,6 @@ public class AvailableCard extends Teller implements Comand {
                 countBankCard++;
                 numberOfCardIssuedId0 = (countBankCard / cardList.size()) * 100;
                 index = i;
-                System.out.println(index);
                 found = true;
                 break;
             }
