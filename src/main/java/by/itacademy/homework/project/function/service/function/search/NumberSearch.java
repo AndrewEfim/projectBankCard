@@ -19,19 +19,26 @@ public class NumberSearch extends Teller implements Comand {
     public NumberSearch(CardOfOwner cardOfOwner) throws IOException, XMLStreamException {
         super(cardOfOwner);
     }
-
     //SearchingByNumber
     public void execute() {
         cardList.addAll(cardOfOwner.getCards());
         System.out.println("Введите номер банковсеой карты для поиска");
         String cardNumber = in.nextLine();
-
+        boolean found = false;
+        int index = 0;
         for (int i = 0; i < cardList.size(); i++) {
             if (cardList.get(i).getNumber().equals(cardNumber)) {
-                System.out.println("----------------------------------------------------------------------------------");
-                System.out.println("Карта: " + cardList.get(i));
-                System.out.println("----------------------------------------------------------------------------------");
+                index = i;
+                found = true;
+                break;
             }
+        }
+        if (found) {
+            System.out.println("----------------------------------------------------------------------------------");
+            System.out.println("Карта: " + cardList.get(index));
+            System.out.println("----------------------------------------------------------------------------------");
+        } else {
+            System.out.println("Банковской карты с таким номером нет");
         }
         logger.debug("debug messege");
     }

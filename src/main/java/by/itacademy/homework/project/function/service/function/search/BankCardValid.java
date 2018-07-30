@@ -25,17 +25,27 @@ public class BankCardValid extends Teller implements Comand {
     public void execute() {
         cardList.addAll(cardOfOwner.getCards());
         System.out.println("Введите ID карты");
-        int index = Integer.parseInt(in.nextLine());
+        int id = Integer.parseInt(in.nextLine());
+        int index = 0;
+        boolean found = false;
+        Period period = null;
         LocalDate now = LocalDate.now();
         for (int i = 0; i < cardList.size(); i++) {
-            if (cardList.get(i).getId() == index) {
-                Period period = Period.between(now, cardList.get(i).getYear());
-                System.out.println("----------------------------------------------------------------------------------");
-                System.out.println("Карта банка : " + cardList.get(i).getName()
-                        + " " + "Карта валидна еще: " + period.getYears() + "год(-а) "
-                        + period.getMonths() + "месяц(-а) " + period.getDays() + "день(-я)");
-                System.out.println("----------------------------------------------------------------------------------");
+            if (cardList.get(i).getId() == id) {
+                period = Period.between(now, cardList.get(i).getYear());
+                index = i;
+                found = true;
+                break;
             }
+        }
+        if (found) {
+            System.out.println("----------------------------------------------------------------------------------");
+            System.out.println("Карта банка : " + cardList.get(index).getName()
+                    + " " + "Карта валидна еще: " + period.getYears() + "год(-а) "
+                    + period.getMonths() + "месяц(-а) " + period.getDays() + "день(-я)");
+            System.out.println("----------------------------------------------------------------------------------");
+        } else {
+            System.out.println("Банковский карты с таким id нет");
         }
         logger.debug("debug SearchingValidTimeCard");
     }

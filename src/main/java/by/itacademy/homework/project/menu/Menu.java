@@ -34,6 +34,7 @@ public class Menu {
         menuitems.put(5, new AvailableCard(cardOfOwner));
         menuitems.put(6, new NumberSearch(cardOfOwner));
         //menuitems.put(7,return false);
+
     }
 
     public Menu() throws IOException, XMLStreamException {
@@ -50,6 +51,7 @@ public class Menu {
         System.out.println("5- узнать сколько карт банка в наличии и процент от общего количесво");
         System.out.println("6- поиск по номеру карты");
         System.out.println("7- выход");
+
     }
 
 }

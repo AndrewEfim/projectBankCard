@@ -27,13 +27,21 @@ public class TimeRangeSearch extends Teller implements Comand {
         System.out.println("Введите конец диапазона в формате yyyy-MM-dd");
         LocalDate endRange = LocalDate.parse(in.nextLine());
         System.out.println(endRange);
-
+        boolean found = false;
+        int index = 0;
         for (int i = 0; i < cardList.size(); i++) {
             if ((startRange.isBefore(cardList.get(i).getYear())) && ((endRange).isAfter(cardList.get(i).getYear()))) {
-                System.out.println("----------------------------------------------------------------------------------");
-                System.out.println("Результат поиска по временному диапазону: " + cardList.get(i));
-                System.out.println("----------------------------------------------------------------------------------");
+                index = i;
+                found = true;
+                break;
             }
+        }
+        if (found) {
+            System.out.println("----------------------------------------------------------------------------------");
+            System.out.println("Результат поиска по временному диапазону: " + cardList.get(index));
+            System.out.println("----------------------------------------------------------------------------------");
+        } else {
+            System.out.println("В веденном диапазоне карт не нейденно");
         }
     }
 }
