@@ -24,21 +24,12 @@ public class NumberSearch extends Teller implements Comand {
         cardList.addAll(cardOfOwner.getCards());
         System.out.println("Введите номер банковсеой карты для поиска");
         String cardNumber = in.nextLine();
-        boolean found = false;
-        int index = 0;
         for (int i = 0; i < cardList.size(); i++) {
             if (cardList.get(i).getNumber().equals(cardNumber)) {
-                index = i;
-                found = true;
-                break;
+                System.out.println("----------------------------------------------------------------------------------");
+                System.out.println("Карта: " + cardList.get(i));
+                System.out.println("----------------------------------------------------------------------------------");
             }
-        }
-        if (found) {
-            System.out.println("----------------------------------------------------------------------------------");
-            System.out.println("Карта: " + cardList.get(index));
-            System.out.println("----------------------------------------------------------------------------------");
-        } else {
-            System.out.println("Банковской карты с таким номером нет");
         }
         logger.debug("debug messege");
     }

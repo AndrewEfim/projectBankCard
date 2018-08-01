@@ -18,6 +18,9 @@ public class Teller {
         this.cardOfOwner = cardOfOwner;
     }
 
+    public Teller() throws IOException, XMLStreamException {
+    }
+
     public CardOfOwner uploadJsonStreAPI() throws IOException {
         cardOfOwner.addAll(readRemoteFileStreAPI.execute());
         return cardOfOwner;

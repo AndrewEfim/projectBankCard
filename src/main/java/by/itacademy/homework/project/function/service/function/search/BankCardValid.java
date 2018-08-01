@@ -14,7 +14,6 @@ import java.util.*;
 
 public class BankCardValid extends Teller implements Comand {
     Logger logger = Logger.getLogger(BankCardValid.class);
-    //private List<Card> cardList = new ArrayList<>();
     private Scanner in = new Scanner(System.in);
 
     public BankCardValid(CardOfOwner cardOfOwner) throws IOException, XMLStreamException {
@@ -26,26 +25,18 @@ public class BankCardValid extends Teller implements Comand {
         cardList.addAll(cardOfOwner.getCards());
         System.out.println("Введите ID карты");
         int id = Integer.parseInt(in.nextLine());
-        int index = 0;
-        boolean found = false;
         Period period = null;
         LocalDate now = LocalDate.now();
         for (int i = 0; i < cardList.size(); i++) {
             if (cardList.get(i).getId() == id) {
                 period = Period.between(now, cardList.get(i).getYear());
-                index = i;
-                found = true;
-                break;
+                System.out.println("----------------------------------------------------------------------------------");
+                System.out.println("Карта банка : " + cardList.get(i).getName()
+                        + " " + "Карта валидна еще: " + period.getYears() + "год(-а) "
+                        + period.getMonths() + "месяц(-а) " + period.getDays() + "день(-я)");
+                System.out.println("----------------------------------------------------------------------------------");
+
             }
-        }
-        if (found) {
-            System.out.println("----------------------------------------------------------------------------------");
-            System.out.println("Карта банка : " + cardList.get(index).getName()
-                    + " " + "Карта валидна еще: " + period.getYears() + "год(-а) "
-                    + period.getMonths() + "месяц(-а) " + period.getDays() + "день(-я)");
-            System.out.println("----------------------------------------------------------------------------------");
-        } else {
-            System.out.println("Банковский карты с таким id нет");
         }
         logger.debug("debug SearchingValidTimeCard");
     }

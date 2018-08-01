@@ -5,25 +5,33 @@ import by.itacademy.homework.project.domain.Teller;
 import by.itacademy.homework.project.function.service.function.search.*;
 import by.itacademy.homework.project.function.service.function.sorting.RemainderSort;
 import by.itacademy.homework.project.function.service.function.sorting.YearSort;
+import by.itacademy.homework.project.function.service.trhraeds.JsonThread;
+import by.itacademy.homework.project.function.service.trhraeds.XmlThread;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
+import java.util.concurrent.Semaphore;
 
 public class Menu {
     private CardOfOwner cardOfOwner = new CardOfOwner();
-    private Scanner input = new Scanner(System.in);
+    //private Scanner input = new Scanner(System.in);
     private Teller teller = new Teller(cardOfOwner);
     private AvailableCard availableCard = new AvailableCard(cardOfOwner);
     private Search search = new Search(cardOfOwner);
     private Map<Integer, Comand> menuitems = new HashMap<>();
+    Semaphore sem = new Semaphore(1);
+
 
     {
         System.out.println("Банковскте карты");
-        teller.uploadXMLStAX();
-        teller.uploadJsonStreAPI();
+        Thread thread = new Thread(new JsonThread(cardOfOwner));
+        thread.start();
+        Thread thread1 = new Thread(new XmlThread(cardOfOwner));
+        thread1.start();
+        //teller.uploadXMLStAX();
+        //teller.uploadJsonStreAPI();
         search.add();
         boolean f = true;
 
@@ -33,8 +41,6 @@ public class Menu {
         menuitems.put(4, new TimeRangeSearch(cardOfOwner));
         menuitems.put(5, new AvailableCard(cardOfOwner));
         menuitems.put(6, new NumberSearch(cardOfOwner));
-        //menuitems.put(7,return false);
-
     }
 
     public Menu() throws IOException, XMLStreamException {
@@ -43,6 +49,7 @@ public class Menu {
     public Comand getComand(int i) {
         return menuitems.get(i);
     }
+
     public void textMenu() {
         System.out.println("1- сортировка по остатку");
         System.out.println("2- сорировка по году");
@@ -51,7 +58,5 @@ public class Menu {
         System.out.println("5- узнать сколько карт банка в наличии и процент от общего количесво");
         System.out.println("6- поиск по номеру карты");
         System.out.println("7- выход");
-
     }
-
 }
