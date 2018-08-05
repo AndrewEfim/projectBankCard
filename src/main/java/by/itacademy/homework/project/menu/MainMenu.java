@@ -12,7 +12,7 @@ public class MainMenu {
     }
 
     public void Start() throws IOException, XMLStreamException {
-        menu.upload();
+        //menu.upload();
         boolean f = true;
         while (f) {
             menu.textMenu();

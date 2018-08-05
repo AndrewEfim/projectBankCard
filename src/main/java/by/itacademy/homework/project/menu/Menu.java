@@ -6,8 +6,7 @@ import by.itacademy.homework.project.domain.Teller;
 import by.itacademy.homework.project.function.service.function.search.*;
 import by.itacademy.homework.project.function.service.function.sorting.RemainderSort;
 import by.itacademy.homework.project.function.service.function.sorting.YearSort;
-import by.itacademy.homework.project.function.service.trhraeds.JsonThread;
-import by.itacademy.homework.project.function.service.trhraeds.XmlThread;
+import by.itacademy.homework.project.function.service.trhraeds.MyThread;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
@@ -20,20 +19,38 @@ import java.util.concurrent.Semaphore;
 public class Menu {
     private CardOfOwner cardOfOwner = new CardOfOwner();
     public List<Card> cardList = new ArrayList<>();
-    private Teller teller = new Teller(cardOfOwner,cardList);
-    private AvailableCard availableCard = new AvailableCard(cardOfOwner,cardList);
-    private Search search = new Search(cardOfOwner,cardList);
+    private Teller teller = new Teller(cardOfOwner, cardList);
+    private AvailableCard availableCard = new AvailableCard(cardOfOwner, cardList);
+    private Search search = new Search(cardOfOwner, cardList);
     private Map<Integer, Comand> menuitems = new HashMap<>();
+    private Semaphore semaphore = new Semaphore(2, true);
 
-    public void upload() throws XMLStreamException, IOException {
-        teller.uploadXMLStAX();
-        teller.uploadJsonStreAPI();
-        teller.add();
-        //System.out.println(search.add().size());
-    }
+//    public void upload() throws XMLStreamException, IOException {
+//        teller.uploadXMLStAX();
+//        teller.uploadJsonStreAPI();
+//        teller.add();
+//        //System.out.println(search.add().size());
+//    }
 
     {
         System.out.println("Банковские карты");
+            MyThread thread1 = new MyThread(cardOfOwner,semaphore);
+            thread1.start();
+            MyThread thread2 = new MyThread(cardOfOwner,semaphore);
+            thread2.start();
+            MyThread thread3 = new MyThread(cardOfOwner,semaphore);
+            thread3.start();
+            MyThread thread4 = new MyThread(cardOfOwner,semaphore);
+            thread4.start();
+            MyThread thread5 = new MyThread(cardOfOwner,semaphore);
+            thread5.start();
+            MyThread thread6 = new MyThread(cardOfOwner,semaphore);
+            thread6.start();
+            MyThread thread7 = new MyThread(cardOfOwner,semaphore);
+            thread7.start();
+            teller.add();
+
+
         //Thread thread = new Thread(new JsonThread(cardOfOwner));
         //thread.start();
         //Thread thread1 = new Thread(new XmlThread(cardOfOwner));
@@ -41,12 +58,12 @@ public class Menu {
 
         boolean f = true;
 
-        menuitems.put(1, new RemainderSort(cardOfOwner,cardList));
-        menuitems.put(2, new YearSort(cardOfOwner,cardList));
-        menuitems.put(3, new BankCardValid(cardOfOwner,cardList));
-        menuitems.put(4, new TimeRangeSearch(cardOfOwner,cardList));
-        menuitems.put(5, new AvailableCard(cardOfOwner,cardList));
-        menuitems.put(6, new NumberSearch(cardOfOwner,cardList));
+        menuitems.put(1, new RemainderSort(cardOfOwner, cardList));
+        menuitems.put(2, new YearSort(cardOfOwner, cardList));
+        menuitems.put(3, new BankCardValid(cardOfOwner, cardList));
+        menuitems.put(4, new TimeRangeSearch(cardOfOwner, cardList));
+        menuitems.put(5, new AvailableCard(cardOfOwner, cardList));
+        menuitems.put(6, new NumberSearch(cardOfOwner, cardList));
     }
 
     public Menu() throws IOException, XMLStreamException {
