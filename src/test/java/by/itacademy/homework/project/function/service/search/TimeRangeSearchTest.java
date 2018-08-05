@@ -16,7 +16,7 @@ public class TimeRangeSearchTest {
 
     private CardOfOwner cardOfOwner = new CardOfOwner();
     private List<Card> cardList = new ArrayList<>();
-    private Teller teller = new Teller(cardOfOwner);
+    private Teller teller = new Teller(cardOfOwner,cardList);
 
     public TimeRangeSearchTest() throws IOException, XMLStreamException {
     }

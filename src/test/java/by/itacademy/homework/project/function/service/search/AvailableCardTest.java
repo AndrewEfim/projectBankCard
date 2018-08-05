@@ -14,7 +14,7 @@ import java.util.List;
 public class AvailableCardTest {
     private CardOfOwner cardOfOwner = new CardOfOwner();
     private List<Card> cardList = new ArrayList<>();
-    private Teller teller = new Teller(cardOfOwner);
+    private Teller teller = new Teller(cardOfOwner,cardList);
 
     public AvailableCardTest() throws IOException, XMLStreamException {
     }

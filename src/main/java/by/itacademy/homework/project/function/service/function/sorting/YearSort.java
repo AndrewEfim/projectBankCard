@@ -10,9 +10,11 @@ import java.io.IOException;
 import java.util.*;
 
 public class YearSort extends Teller implements Comand {
-    public YearSort(CardOfOwner cardOfOwner) throws IOException, XMLStreamException {
-        super(cardOfOwner);
+
+    public YearSort(CardOfOwner cardOfOwner, List<Card> cardList) throws IOException, XMLStreamException {
+        super(cardOfOwner, cardList);
     }
+
     //SortingByYear
     public void execute() {
         Set<Card> cardsYear = new TreeSet<>(new CardYearComparator());

@@ -12,9 +12,10 @@ import java.util.List;
 public class Search extends Teller {
     private List<Card>cardList = new ArrayList<>();
 
-    public Search(CardOfOwner cardOfOwner) throws IOException, XMLStreamException {
-        super(cardOfOwner);
+    public Search(CardOfOwner cardOfOwner, List<Card> cardList) throws IOException, XMLStreamException {
+        super(cardOfOwner, cardList);
     }
+
 
 //    public List<Card> add() {
 //        this.cardList.addAll(cardOfOwner.getCards());

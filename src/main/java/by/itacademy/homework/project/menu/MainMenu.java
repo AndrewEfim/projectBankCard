@@ -11,7 +11,8 @@ public class MainMenu {
     public MainMenu() throws IOException, XMLStreamException {
     }
 
-    public void Start() {
+    public void Start() throws IOException, XMLStreamException {
+        menu.upload();
         boolean f = true;
         while (f) {
             menu.textMenu();

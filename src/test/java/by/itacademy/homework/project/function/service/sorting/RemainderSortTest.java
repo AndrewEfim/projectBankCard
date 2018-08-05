@@ -10,15 +10,18 @@ import org.junit.Test;
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class RemainderSortTest {
 
     private CardOfOwner cardOfOwner = new CardOfOwner();
+    private List<Card> cardList = new ArrayList<>();
     private Set<Card> cardsRmndr = null;
     private Set<Card> cardsRmndrExpResult = new TreeSet<>(new CardRemainderComparator());
-    private Teller teller = new Teller(cardOfOwner);
+    private Teller teller = new Teller(cardOfOwner,cardList);
 
     {
         cardsRmndrExpResult.add(new Card(4, "BPS Sber Bank", "2299 3565 2565 9776", LocalDate.of(2016, 01, 23), "10", false));

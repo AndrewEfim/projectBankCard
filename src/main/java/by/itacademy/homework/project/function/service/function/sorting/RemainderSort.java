@@ -11,9 +11,11 @@ import java.util.*;
 
 public class RemainderSort extends Teller implements Comand {
 
-    public RemainderSort(CardOfOwner cardOfOwner) throws IOException, XMLStreamException {
-        super(cardOfOwner);
+
+    public RemainderSort(CardOfOwner cardOfOwner, List<Card> cardList) throws IOException, XMLStreamException {
+        super(cardOfOwner, cardList);
     }
+
     //SortByRemainder
     public void execute() {
         Set<Card> cardsRmndr = new TreeSet<>(new CardRemainderComparator());

@@ -15,7 +15,7 @@ import java.util.List;
 public class NumberSerchTest {
     private CardOfOwner cardOfOwner = new CardOfOwner();
     private List<Card> cardList = new ArrayList<>();
-    private Teller teller = new Teller(cardOfOwner);
+    private Teller teller = new Teller(cardOfOwner,cardList);
 
     public NumberSerchTest() throws IOException, XMLStreamException {
     }

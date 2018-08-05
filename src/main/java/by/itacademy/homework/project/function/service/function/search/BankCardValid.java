@@ -13,16 +13,19 @@ import java.time.Period;
 import java.util.*;
 
 public class BankCardValid extends Teller implements Comand {
+
     Logger logger = Logger.getLogger(BankCardValid.class);
     private Scanner in = new Scanner(System.in);
+    private Teller teller;
 
-    public BankCardValid(CardOfOwner cardOfOwner) throws IOException, XMLStreamException {
-        super(cardOfOwner);
+    public BankCardValid(CardOfOwner cardOfOwner, List<Card> cardList) throws IOException, XMLStreamException {
+        super(cardOfOwner, cardList);
     }
+
 
     //SearchingValidTimeCard
     public void execute() {
-        cardList.addAll(cardOfOwner.getCards());
+        System.out.println(cardList.size());
         System.out.println("Введите ID карты");
         int id = Integer.parseInt(in.nextLine());
         Period period = null;
@@ -30,12 +33,18 @@ public class BankCardValid extends Teller implements Comand {
         for (int i = 0; i < cardList.size(); i++) {
             if (cardList.get(i).getId() == id) {
                 period = Period.between(now, cardList.get(i).getYear());
-                System.out.println("----------------------------------------------------------------------------------");
-                System.out.println("Карта банка : " + cardList.get(i).getName()
-                        + " " + "Карта валидна еще: " + period.getYears() + "год(-а) "
-                        + period.getMonths() + "месяц(-а) " + period.getDays() + "день(-я)");
-                System.out.println("----------------------------------------------------------------------------------");
 
+                if((period.getDays()>=0)&&(period.getMonths()>=0)&&(period.getYears()>=0)){
+                    System.out.println("----------------------------------------------------------------------------------");
+                    System.out.println("Карта банка : " + cardList.get(i).getName()
+                            + " " + "Карта валидна еще: " + period.getYears() + "год(-а) "
+                            + period.getMonths() + "месяц(-а) " + period.getDays() + "день(-я)");
+                    System.out.println("----------------------------------------------------------------------------------");
+                }
+                else  //if ((period.getDays()<0)&&(period.getMonths()<0)&&(period.getYears()<0))
+                     {
+                    System.out.println("Карта c номером: " +" "+ getCardList().get(i).getNumber()+" "+" не дествительна " );
+                }
             }
         }
         logger.debug("debug SearchingValidTimeCard");

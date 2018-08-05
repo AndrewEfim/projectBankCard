@@ -14,9 +14,10 @@ import java.util.*;
 
 public class YearSortTest {
     private CardOfOwner cardOfOwner = new CardOfOwner();
+    private List<Card> cardList = new ArrayList<>();
     private Set<Card> cardsYear = null;
     private Set<Card> cardsYearExpResult = new TreeSet<>(new CardYearComparator<>());
-    private Teller teller = new Teller(cardOfOwner);
+    private Teller teller = new Teller(cardOfOwner,cardList);
 
 
     {

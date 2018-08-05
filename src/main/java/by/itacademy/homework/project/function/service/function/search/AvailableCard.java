@@ -1,5 +1,6 @@
 package by.itacademy.homework.project.function.service.function.search;
 
+import by.itacademy.homework.project.domain.Card;
 import by.itacademy.homework.project.domain.CardOfOwner;
 import by.itacademy.homework.project.domain.Teller;
 import by.itacademy.homework.project.menu.Comand;
@@ -7,19 +8,22 @@ import org.apache.log4j.Logger;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class AvailableCard extends Teller implements Comand {
     Logger logger = Logger.getLogger(AvailableCard.class);
     private Scanner in = new Scanner(System.in);
 
-    public AvailableCard(CardOfOwner cardOfOwner) throws IOException, XMLStreamException {
-        super(cardOfOwner);
+    public AvailableCard(CardOfOwner cardOfOwner, List<Card> cardList) throws IOException, XMLStreamException {
+        super(cardOfOwner, cardList);
     }
+
 
     //cardAvailable
     public void execute() {
-        cardList.addAll(cardOfOwner.getCards());
+
+        // cardList.addAll(cardOfOwner.getCards());
         System.out.println("Введите название банка");
         String BankName = in.nextLine();
         double countBankCard = 0;

@@ -16,12 +16,14 @@ public class NumberSearch extends Teller implements Comand {
     Logger logger = Logger.getLogger(BankCardValid.class);
     private Scanner in = new Scanner(System.in);
 
-    public NumberSearch(CardOfOwner cardOfOwner) throws IOException, XMLStreamException {
-        super(cardOfOwner);
+    public NumberSearch(CardOfOwner cardOfOwner, List<Card> cardList) throws IOException, XMLStreamException {
+        super(cardOfOwner, cardList);
     }
+
+
     //SearchingByNumber
     public void execute() {
-        cardList.addAll(cardOfOwner.getCards());
+       // cardList.addAll(cardOfOwner.getCards());
         System.out.println("Введите номер банковсеой карты для поиска");
         String cardNumber = in.nextLine();
         for (int i = 0; i < cardList.size(); i++) {

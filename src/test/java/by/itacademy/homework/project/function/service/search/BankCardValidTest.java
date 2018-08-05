@@ -16,7 +16,7 @@ import java.util.List;
 public class BankCardValidTest {
     private CardOfOwner cardOfOwner = new CardOfOwner();
     private List<Card> cardList = new ArrayList<>();
-    private Teller teller = new Teller(cardOfOwner);
+    private Teller teller = new Teller(cardOfOwner,cardList);
 
     public BankCardValidTest() throws IOException, XMLStreamException {
     }
